@@ -1,4 +1,4 @@
-basicNumber = 1.0001
+basicNumber = 1.000001
 
 def logCalculator(number, accuracy):
     count = 0
