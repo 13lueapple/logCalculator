@@ -1,10 +1,13 @@
 import math, timer
 
-
+거듭제곱횟수 = 20
+소숫점자릿수 = 6
 def calculateLog():
     powOf10s = []
-    for i in range(0,30):
+    for i in range(0,거듭제곱횟수):
         powOf10s.append(((pow(10, pow(2,-i)))))
+    
+    print(powOf10s)
     
     확인횟수 = 0
     정확횟수 = 0
@@ -23,17 +26,18 @@ def calculateLog():
                     break
             if 나눠질값 <= powOf10s[-1]:
                 break
-        로그결과 = round(sum(로그곱지수목록), 4)
-        if 로그결과 == round(math.log10(구할로그값), 4):
+        로그결과 = round(sum(로그곱지수목록), 소숫점자릿수)
+        if 로그결과 == round(math.log10(구할로그값), 소숫점자릿수):
             정확횟수 += 1
         print(f"log {구할로그값} : {로그결과}")
         if 구할로그값 >= 9.99:
             break
-    print(f"정확도 : {round(정확횟수/확인횟수*100, 1)}")
+    print(f"{round(정확횟수/확인횟수*100, 1)}")
 
 if __name__ == "__main__":
-    print(timer.timer(calculateLog, []))
-
+    print(round(timer.timer(calculateLog, []), 3))
+    print(거듭제곱횟수)
+    print(소숫점자릿수)
 
 
 
