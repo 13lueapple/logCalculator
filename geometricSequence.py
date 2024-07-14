@@ -1,18 +1,31 @@
-basicNumber = 1.000001
+import math, timer
 
-def logCalculator(number, accuracy):
-    count = 0
-    result = accuracy
+def calculateLog():
+    공비 = 1.0001
+
+    def logCalculator(로그몇, 공비):
+        지수 = 0
+        등비현재항 = 공비
+        while True:
+            지수 += 1
+            등비현재항 *= 공비
+            if 등비현재항 >= 로그몇:
+                return 지수
+
+    로그10지수 = logCalculator(10, 공비)
+    로그몇 = 1
+    정확횟수 = 0
+    확인횟수 = 0
     while True:
-        count += 1
-        result *= accuracy
-        if result >= number:
-            return count
+        확인횟수 += 1
+        로그몇 = round(로그몇 + 0.01, 2)
+        로그결과 = round(logCalculator(로그몇, 공비)/로그10지수, 4)
+        if 로그결과 == round(math.log10(로그몇), 4):
+            정확횟수 += 1
+        print(f"log {로그몇} : {로그결과}")
+        if 로그몇 >= 10:
+            break
 
-basic10Count = logCalculator(10, basicNumber)
-count = 1
-while True:
-    count += 0.01
-    print(f"log {round(count, 2)} : {logCalculator(round(count, 2), basicNumber)/basic10Count}")
-    if count >= 10:
-        break
+    print(f"정확도 : {round(정확횟수/확인횟수*100, 1)}")
+    
+print(timer.timer(calculateLog, []))
